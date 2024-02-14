@@ -118,7 +118,6 @@ RUN apt-get update -qq && export DEBIAN_FRONTEND=noninteractive && \
     libxkbcommon-x11-dev
 
 
-# TODO To be continued 
 RUN wget -O qt-archive.tar.xz "https://download.qt.io/official_releases/qt/6.6/6.6.1/single/qt-everywhere-src-6.6.1.tar.xz" && \
     openssl md5 qt-archive.tar.xz | awk '{print $2}' > /tmp/qt-archive.md5
 RUN wget -O /tmp/qt-checksum.md5.txt "https://download.qt.io/official_releases/qt/6.6/6.6.1/single/md5sums.txt" && \ 
@@ -128,6 +127,7 @@ RUN wget -O /tmp/qt-checksum.md5.txt "https://download.qt.io/official_releases/q
 
 WORKDIR /tmp/qt-everywhere-src-6.6.1
 RUN ./configure --no-opengl && cmake --build . --parallel && cmake --install .
+ENV PATH=${PATH}:/usr/local/Qt-6.6.1/bin
 WORKDIR /
 
 
