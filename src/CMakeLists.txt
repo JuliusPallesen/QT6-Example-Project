@@ -30,12 +30,19 @@ IF(CPP_STARTER_USE_CPPZMQ_PROTO)
     ADD_SUBDIRECTORY(protobuf.cppzmq)
 ENDIF()
 
+# QT
+MESSAGE("Using QT6 & Widgets Modules")
+ADD_SUBDIRECTORY(app)
+ADD_SUBDIRECTORY(business_logic)
+FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets)
+qt_standard_project_setup()
+
 
 FIND_PACKAGE(docopt REQUIRED)
 FIND_PACKAGE(spdlog REQUIRED)
 FIND_PACKAGE(fmt REQUIRED)
 # Generic test that uses conan libs
-ADD_EXECUTABLE(intro main.cpp)
+ADD_EXECUTABLE(intro main.cpp) # TODO
 TARGET_LINK_LIBRARIES(
         intro
         PRIVATE project_options

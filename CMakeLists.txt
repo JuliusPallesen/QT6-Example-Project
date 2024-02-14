@@ -10,7 +10,7 @@ SET(CMAKE_CXX_EXTENSIONS OFF)
 INCLUDE(cmake/Options.cmake)
 
 # Set the project name to your project name, my project isn't very descriptive
-PROJECT(myproject
+PROJECT(myqtwidgetsproject
         LANGUAGES CXX
         VERSION 0.0.1)
 
