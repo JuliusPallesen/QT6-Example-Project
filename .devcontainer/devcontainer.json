@@ -22,7 +22,16 @@
   // Set *default* container specific settings.json values on container create.
   "settings": {
     "cmake.configureOnOpen": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    // CSSpellChecker
+    "cSpell.diagnosticLevel": "Hint",
+    "workbench.colorCustomizations": {
+      // will change the color of three dots to red
+      "editorHint.foreground": "#ff0000",
+      // will underline the entire word with dots in your chosen color
+      "editorHint.border": "#00ff66"
+    },
+    "cmake.automaticReconfigure": false
   },
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
@@ -31,10 +40,12 @@
     "twxs.cmake",
     "ms-vscode.cpptools-themes",
     "cschlosser.doxdocgen",
-    "eamodio.gitlens",
+    //"eamodio.gitlens",
     "ms-python.python",
     "ms-python.vscode-pylance",
-    "mutantdino.resourcemonitor"
+    "mutantdino.resourcemonitor",
+    "streetsidesoftware.code-spell-checker",
+    "Gruntfuggly.todo-tree"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
