@@ -32,10 +32,12 @@ ENDIF()
 
 # QT
 MESSAGE("Using QT6 & Widgets Modules")
-ADD_SUBDIRECTORY(app)
-ADD_SUBDIRECTORY(business_logic)
-FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets)
+FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets Core)
 qt_standard_project_setup()
+
+ADD_SUBDIRECTORY(app)
+ADD_SUBDIRECTORY(businesslogic)
+
 
 
 FIND_PACKAGE(docopt REQUIRED)
