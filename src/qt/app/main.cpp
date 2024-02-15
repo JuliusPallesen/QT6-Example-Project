@@ -1,8 +1,4 @@
 
-#include <functional>
-#include <iostream>
-#include <string>
-
 #include "mainwindow.h"
 #include <QApplication>
 

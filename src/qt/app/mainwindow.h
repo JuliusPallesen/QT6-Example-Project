@@ -23,7 +23,6 @@ class MainWindow : public QMainWindow
 
   private:
     Ui::MainWindow *ui;
-    QStringList *list;
     QStringListModel *model;
 };
 
