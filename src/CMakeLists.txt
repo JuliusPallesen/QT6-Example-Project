@@ -31,12 +31,13 @@ IF(CPP_STARTER_USE_CPPZMQ_PROTO)
 ENDIF()
 
 # QT
-MESSAGE("Using QT6 & Widgets Modules")
-FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets Core)
-qt_standard_project_setup()
+IF(CPP_STARTER_USE_QT)
+    MESSAGE("Using QT6 & Widgets Modules")
+    FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets Core)
+    qt_standard_project_setup()
 
-ADD_SUBDIRECTORY(app)
-ADD_SUBDIRECTORY(businesslogic)
+    ADD_SUBDIRECTORY(qt)
+ENDIF()
 
 
 
