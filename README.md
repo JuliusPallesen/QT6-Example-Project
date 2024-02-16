@@ -333,6 +333,7 @@ version of `fmt`.
 
 - See [libFuzzer Tutorial](https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md)
 
+# QT Usage
 ## Open QT Designer via docker external terminal
 
 1. Install `sudo apt install x11-xserver-utils` in external terminal
@@ -340,3 +341,6 @@ version of `fmt`.
 3. Get Container ID: `docker ps`
 4. Execute bash in docker image: `docker exec -it -e DISPLAY=$DISPLAY <IMAGE-ID> /bin/bash`
 5. In container open designer `/usr/local/Qt-<VERSION>/bin/designer`
+
+## Debugging
+- worked with preset unixlike-gcc-12-debug
