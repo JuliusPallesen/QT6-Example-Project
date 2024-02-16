@@ -15,10 +15,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    explicit MainWindow(QWidget *parent = 0, QSqlTableModel *viewModel = nullptr);
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
   private:
+    QSqlDatabase createDB();
+    QSqlTableModel *createModel(const QSqlDatabase &db);
+    void addTask(const QString &name);
+    QSqlRecord createEntry(QString name);
+
     void createMenuBar();
     void about();
 
