@@ -39,7 +39,10 @@ QSqlDatabase createDB()
     QStringList tables = db.tables();
     if (!tables.contains(TABLE_NAME, Qt::CaseInsensitive)) {
         QSqlQuery q;
-        if (!q.exec(TASK_SQL)) { throw(std::ios_base::failure("Database opening failed!" + q.lastError().text().toStdString())); }
+        if (!q.exec(TASK_SQL)) {
+            throw(std::ios_base::failure(
+              "Database opening failed!" + q.lastError().text().toStdString()));
+        }
     }
 
 
@@ -58,7 +61,10 @@ QSqlTableModel *createModel(const QSqlDatabase &db)
 
     model->setHeaderData(model->fieldIndex("name"), Qt::Horizontal, QObject::tr("Name"));
 
-    if (!model->select()) { throw(std::ios_base::failure("Model select failed!" + model->lastError().text().toStdString())); }
+    if (!model->select()) {
+        throw(std::ios_base::failure(
+          "Model select failed!" + model->lastError().text().toStdString()));
+    }
 
     return model;
 }
@@ -66,7 +72,10 @@ QSqlTableModel *createModel(const QSqlDatabase &db)
 void addTask(const QString &name)
 {
     QSqlQuery q;
-    if (!q.prepare(INSERT_TASK_SQL)) { throw(std::ios_base::failure("Query preapre failed!" + q.lastError().text().toStdString())); }
+    if (!q.prepare(INSERT_TASK_SQL)) {
+        throw(std::ios_base::failure(
+          "Query preapre failed!" + q.lastError().text().toStdString()));
+    }
     q.addBindValue(name);
     q.exec();
 }
@@ -75,7 +84,9 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
-    if (!QSqlDatabase::drivers().contains("QSQLITE")) { throw(std::ios_base::failure("QSQLITE Driver not found!")); }
+    if (!QSqlDatabase::drivers().contains("QSQLITE")) {
+        throw(std::ios_base::failure("QSQLITE Driver not found!"));
+    }
 
     const QSqlDatabase db = createDB();
     QSqlTableModel *model = createModel(db);
@@ -84,13 +95,15 @@ int main(int argc, char **argv)
     // tempRecord.setValue("id", "0");
     // tempRecord.setValue("name", "Do stuff");
 
-    // if (!model->insertRecord(-1, tempRecord)) { throw(std::ios_base::failure("Model select failed!" + model->lastError().text().toStdString())); }
-    // addTask("Working");
+    // if (!model->insertRecord(-1, tempRecord)) {
+    // throw(std::ios_base::failure("Model select failed!" +
+    // model->lastError().text().toStdString())); } addTask("Working");
 
     // model->submitAll();
 
     // QSqlRecord retRecord = model->record(0);
-    // std::cout << "Name: " << retRecord.fieldName(0).toStdString() << ", Value: " << retRecord.value(0).toString().toStdString() << std::endl;
+    // std::cout << "Name: " << retRecord.fieldName(0).toStdString() << ",
+    // Value: " << retRecord.value(0).toString().toStdString() << std::endl;
     //  QAbstractItemModel *model = new QStringListModel(nullptr);
 
     // TODO Try to manipulate manually first
