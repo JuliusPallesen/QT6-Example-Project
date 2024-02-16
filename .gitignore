@@ -11,3 +11,11 @@ conan-cache/
 
 # User spesific settings
 CMakeUserPresets.json
+.vscode/settings.json
+src/qt-example/bookdelegate.cpp
+src/qt-example/bookdelegate.h
+src/qt-example/bookwindow.cpp
+src/qt-example/bookwindow.h
+src/qt-example/CMakeLists.txt
+src/qt-example/initdb.h
+src/qt-example/main.cpp
