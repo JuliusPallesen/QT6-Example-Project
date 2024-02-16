@@ -33,10 +33,8 @@ ENDIF()
 # QT
 IF(CPP_STARTER_USE_QT)
     MESSAGE("Using QT6 & Widgets Modules")
-    FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets Core)
-    qt_standard_project_setup()
-
     ADD_SUBDIRECTORY(qt)
+    ADD_SUBDIRECTORY(qt-example)
 ENDIF()
 
 
