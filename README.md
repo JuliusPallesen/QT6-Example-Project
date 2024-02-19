@@ -255,16 +255,16 @@ Choose a configuration which is suitable and use following command for example.
 Once you have selected all the options you would like to use, you can build the
 project (all targets):
 
-    cmake --preset <PRESET_NAME>
+    cmake --build --preset <PRESET_NAME>
 
 For example:
     
-    cmake --preset build-unixlike-clang-15-debug
+    cmake --build --preset build-unixlike-clang-15-debug
 
 ### Test
 Run all test using preset and ctest:
 
-    cmake --preset <PRESET_NAME>
+    ctest --preset <PRESET_NAME>
 
 For example:
 
