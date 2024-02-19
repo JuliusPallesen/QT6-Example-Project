@@ -34,7 +34,6 @@ ENDIF()
 IF(CPP_STARTER_USE_QT)
     MESSAGE("Using QT6 & Widgets Modules")
     ADD_SUBDIRECTORY(qt)
-    ADD_SUBDIRECTORY(qt-example)
 ENDIF()
 
 
