@@ -5,6 +5,13 @@ FROM ubuntu:${VARIANT}
 # Restate the variant to use it later on in the llvm and cmake installations
 ARG VARIANT
 
+# Set the locale
+#RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+#    locale-gen
+#ENV LANG en_US.UTF-8  
+#ENV LANGUAGE en_US:en  
+#ENV LC_ALL en_US.UTF-8     
+
 # Install necessary packages available from standard repos
 RUN apt-get update -qq && export DEBIAN_FRONTEND=noninteractive && \
     apt-get install -y --no-install-recommends \
@@ -130,6 +137,7 @@ RUN ./configure --no-opengl && cmake --build . --parallel && cmake --install .
 ENV PATH=${PATH}:/usr/local/Qt-6.6.1/bin
 WORKDIR /
 
+#RUN apt install qtwayland5
 
 ## Cleanup cached apt data we don't need anymore
 RUN apt-get autoremove -y && apt-get clean && \
