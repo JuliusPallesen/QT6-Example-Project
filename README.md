@@ -268,7 +268,7 @@ Run all test using preset and ctest:
 
 For example:
 
-    cmake --preset test-unixlike-clang-15-debug
+    ctest --preset test-unixlike-clang-15-debug
 
 
 ## Troubleshooting
