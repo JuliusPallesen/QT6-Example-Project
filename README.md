@@ -341,6 +341,7 @@ version of `fmt`.
 3. Get Container ID: `docker ps`
 4. Execute bash in docker image: `docker exec -it -e DISPLAY=$DISPLAY <IMAGE-ID> /bin/bash`
 5. In container open designer `/usr/local/Qt-<VERSION>/bin/designer`
+6. optional: in qt designer open example via `/workspaces/QT6-QMLExample/src/qt/app/mainwindow.ui`
 
 ## Debugging
 - worked with preset unixlike-gcc-12-debug
