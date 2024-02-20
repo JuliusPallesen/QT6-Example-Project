@@ -37,8 +37,6 @@ int main(int argc, char **argv)
     // Value: " << retRecord.value(0).toString().toStdString() << std::endl;
     //  QAbstractItemModel *model = new QStringListModel(nullptr);
 
-    // TODO Try to manipulate manually first
-
     MainWindow mainW{};
     mainW.show();
     mainW.setWindowTitle("Todo Application");
