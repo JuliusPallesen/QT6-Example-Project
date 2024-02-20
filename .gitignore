@@ -19,3 +19,16 @@ src/qt-example/bookwindow.h
 src/qt-example/CMakeLists.txt
 src/qt-example/initdb.h
 src/qt-example/main.cpp
+src/qt-quick-alams/main.qml
+src/qt-quick-alams/qml.qrc
+src/qt-quick-alams/qtquickcontrols2.conf
+src/qt-quick/CMakeLists.txt
+src/qt-quick/README.md
+src/qt-quick/app/CMakeLists.txt
+src/qt-quick/app/HelloWorld.qml
+src/qt-quick/app/main.cpp
+src/qt-quick/app/mainwindow.cpp
+src/qt-quick/app/mainwindow.h
+src/qt-quick/businesslogic/businesslogic.cpp
+src/qt-quick/businesslogic/businesslogic.h
+src/qt-quick/businesslogic/CMakeLists.txt
