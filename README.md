@@ -343,5 +343,12 @@ version of `fmt`.
 5. In container open designer `/usr/local/Qt-<VERSION>/bin/designer`
 6. optional: in qt designer open example via `/workspaces/QT6-QMLExample/src/qt/app/mainwindow.ui`
 
+## Encountering Graphical Artifacts
+If you encounter graphical glitches and artifacts when launching Qt-Applications from the dev container using wsl then try adding the file %USERPROFILE%/.wslgconfig to your user director and add the following into the file:
+
+        $ [system-distro-env]
+        $ ;disable GPU in system-distro
+        $ LIBGL_ALWAYS_SOFTWARE=1
+        
 ## Debugging
 - worked with preset unixlike-gcc-12-debug

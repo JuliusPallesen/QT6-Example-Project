@@ -36,13 +36,17 @@ IF(CPP_STARTER_USE_QT)
     ADD_SUBDIRECTORY(qt)
 ENDIF()
 
-
+# QT Quick playground by Julp
+IF(CPP_STARTER_USE_QUICK)
+    MESSAGE("Using Qt Quick Modules")
+    ADD_SUBDIRECTORY(quick)
+ENDIF()
 
 FIND_PACKAGE(docopt REQUIRED)
 FIND_PACKAGE(spdlog REQUIRED)
 FIND_PACKAGE(fmt REQUIRED)
 # Generic test that uses conan libs
-ADD_EXECUTABLE(intro main.cpp) # TODO
+ADD_EXECUTABLE(intro main.cpp)
 TARGET_LINK_LIBRARIES(
         intro
         PRIVATE project_options

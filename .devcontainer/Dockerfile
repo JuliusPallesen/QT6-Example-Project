@@ -132,6 +132,8 @@ RUN wget -O /tmp/qt-checksum.md5.txt "https://download.qt.io/official_releases/q
     cmp /tmp/qt-checksum.md5 /tmp/qt-archive.md5 && \
     tar xf qt-archive.tar.xz -C /tmp
 
+RUN export QT_QPA_PLATFORM=xcb
+
 WORKDIR /tmp/qt-everywhere-src-6.6.1
 RUN ./configure --no-opengl && cmake --build . --parallel && cmake --install .
 ENV PATH=${PATH}:/usr/local/Qt-6.6.1/bin

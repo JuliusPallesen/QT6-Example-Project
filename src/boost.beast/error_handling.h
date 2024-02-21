@@ -16,4 +16,4 @@ namespace asio = boost::asio;
 using tcp = boost::asio::ip::tcp;
 
 
-inline void fail(beast::error_code ec, char const *what) { fmt::format("FAILED {0}: {1}", what, ec.message()); }
+inline void fail(beast::error_code ec, char const *what) { std::string str = fmt::format("FAILED {0}: {1}", what, ec.message()); }
