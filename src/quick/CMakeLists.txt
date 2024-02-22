@@ -13,6 +13,8 @@ qt_add_qml_module(
         QtExampleProject
     QML_FILES
         helloworld.qml
+    RESOURCES
+        zühlke_logo.png
 )
 
 target_link_libraries(playground
