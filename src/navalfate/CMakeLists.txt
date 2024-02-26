@@ -14,11 +14,16 @@ qt_add_qml_module(
         main.qml
 )
 
+ADD_LIBRARY(entities entity.h entity.cpp mine.h mine.cpp ship.h ship.cpp)
+ADD_LIBRARY(battlefield battlefield.hpp battlefield.cpp)
+
 target_link_libraries(navalfate
     PRIVATE
         Qt6::Gui
         Qt6::Core
         Qt6::Quick
+        entities
+        battlefield
 )
 
 set_target_properties(navalfate PROPERTIES
