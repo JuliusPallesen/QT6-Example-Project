@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls
+import backend.invokable
 
 ApplicationWindow {
     id: window
@@ -35,6 +36,8 @@ ApplicationWindow {
             height: (parent.height - y)
 
             Image {
+                id: logo
+                property int amount_clicked: 0
                 source: "./zühlke_logo.png"
                 width: 100
                 height: 100
@@ -43,6 +46,20 @@ ApplicationWindow {
                     right: parent.right
                     bottomMargin: 10
                     rightMargin: 10
+                }
+
+                Invokable {
+                    id: backend
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        logo.amount_clicked = logo.amount_clicked + 1;
+                        backend.setVal(logo.amount_clicked);
+                        console.log(backend.getVal());
+                    }
                 }
             }
         }

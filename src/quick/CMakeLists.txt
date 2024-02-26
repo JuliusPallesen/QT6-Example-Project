@@ -1,10 +1,10 @@
 FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Core Quick Gui)
 
-# sets CMAKE_AUTOMOC and CMAKE_AUTOUIC to true
 qt_standard_project_setup()
 
 qt_add_executable(playground
     playground.cpp
+    invokable.hpp
 )
 
 qt_add_qml_module(

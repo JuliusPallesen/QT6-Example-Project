@@ -1,3 +1,4 @@
+#include "invokable.hpp"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtQuick>
@@ -10,6 +11,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     engine.rootContext()->setContextProperty("cppText", "Hello World!");
+
+    qmlRegisterType<Invokable>("backend.invokable", 0, 1, "Invokable");
 
     const QUrl url(QStringLiteral("QtExampleProject/helloworld.qml"));
 
