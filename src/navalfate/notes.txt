@@ -1,0 +1,24 @@
+display header menu and bottom thingy
+- file, quit at top
+- maybe selected position or game metadata at the bottom
+
+grid on left side of screen
+- grid layouter in qtQuick?
+- can you adress / change what's rendered in specific spots in the grid?
+
+menu with changing options on right side of screen
+- Top menu that lets you switch between submenus
+	- grey out the one you're currently on
+
+
+F--------------------------------7
+L--------------------------------+
+|                      |__ l__l__|
+|					   | bla     |
+|					   | bla     |
+|					   | bla     |
+|  					   |         |
+|					   |         |
+|                      |         |
++--------------------------------+
+L--------------------------------J

@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Invokable>("backend.invokable", 0, 1, "Invokable");
 
-    const QUrl url(QStringLiteral("QtExampleProject/helloworld.qml"));
+    const QUrl url(QStringLiteral("qrc:/QtExampleProject/helloworld.qml"));
 
     engine.load(url);
 
