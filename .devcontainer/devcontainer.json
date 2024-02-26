@@ -48,7 +48,8 @@
     "mutantdino.resourcemonitor",
     "streetsidesoftware.code-spell-checker",
     "Gruntfuggly.todo-tree",
-    "bbenoist.QML"
+    "bbenoist.QML",
+    "Delgan.qml-format"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],

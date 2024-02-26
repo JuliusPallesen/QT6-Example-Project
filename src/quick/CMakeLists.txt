@@ -13,6 +13,7 @@ qt_add_qml_module(
         QtExampleProject
     QML_FILES
         helloworld.qml
+        HelloWorldText.qml
     RESOURCES
         zühlke_logo.png
 )

@@ -1,54 +1,100 @@
 import QtQuick 2.0
+import QtQuick.Controls
 
-Rectangle {
-    id: sky
-    color: "lightblue"
-    width: 640
+ApplicationWindow {
+    id: window
+    visible: true
+    title: qsTr("Playground")
     height: 480
+    width: 640
 
-    Text {
-        x: 25
-        y: 25
-        height: (parent.height - 50)
-        width: (parent.height - 50)
-        text: "Hello World!"
-        font.bold: true
-    }
+    property bool day: true
 
     Rectangle {
-        id: grass
-        x: parent.x
-        y: (parent.y + (parent.height / 2))
-        color: "green"
-        width: parent.width
-        height: (parent.height - y)
+        id: sky
+        color: window.day ? "lightblue" : "darkblue"
+        anchors.fill: parent
 
-        Image {
-            source: "./zühlke_logo.png"
+        HelloWorldText {
+            anchors {
+                top: parent.top
+                left: parent.left
+                topMargin: 50
+                leftMargin: 50
+            }
             width: 100
-            height: 100
-            x: parent.width - width
-            y: parent.height - height
-        }
-    }
-
-    Item {
-        id: sun
-        x: (sky.width - 100)
-        y: 100
-
-        Rectangle {
-            id: sunBody
-            width: 50
-            height: 50
-            color: "yellow"
-            radius: (width / 2)
+            height: 20
         }
 
         Rectangle {
-            width: 5
-            height: 30
-            color: "yellow"
+            id: grass
+            x: parent.x
+            y: (parent.y + (parent.height / 2))
+            color: window.day ? "green" : "darkgreen"
+            width: parent.width
+            height: (parent.height - y)
+
+            Image {
+                source: "./zühlke_logo.png"
+                width: 100
+                height: 100
+                anchors {
+                    bottom: parent.bottom
+                    right: parent.right
+                    bottomMargin: 10
+                    rightMargin: 10
+                }
+            }
+        }
+
+        Item {
+            id: sun
+            anchors {
+                top: sky.top
+                topMargin: 100
+                right: sky.right
+                rightMargin: 100
+            }
+
+            Rectangle {
+                id: sunBody
+                width: 50
+                height: 50
+                color: window.day ? "yellow" : "lightgrey"
+                radius: (width / 2)
+                anchors.centerIn: parent
+
+                MouseArea {
+                    anchors.fill: sunBody
+                    onClicked: {
+                        window.day = window.day ? false : true;
+                    }
+                }
+
+                Item {
+                    id: beams
+                    visible: window.day ? true : false
+                    property int beamWidth: 6
+                    property int beamHeight: 40
+                    x: (sunBody.width / 2) - (beamWidth / 2)
+                    y: sunBody.height / 2
+                    Repeater {
+                        model: 12
+                        Rectangle {
+                            width: beams.beamWidth
+                            height: beams.beamHeight
+
+                            color: sunBody.color
+
+                            transform: Rotation {
+                                origin.x: sunBody.x + sunBody.width / 2
+                                origin.y: sunBody.y + sunBody.height / 2
+                                angle: (360 / 12) * index
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

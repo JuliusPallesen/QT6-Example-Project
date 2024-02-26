@@ -1,13 +1,16 @@
+#include "my_widget.hpp"
 #include <QApplication>
 #include <QPushButton>
-#include "my_widget.hpp"
 
 /*
 Implementation of final example for https://wiki.qt.io/Qt_for_Beginners
 
 - Implementing:
-    - derived QWidget
+    - derived QWidget class
+        - using moc
+        - implementing own signals
     - connections between application and buttons
+    - button positioning and size changes
 */
 
 int main(int argc, char **argv)
