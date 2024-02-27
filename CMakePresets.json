@@ -19,7 +19,8 @@
         "CPP_STARTER_USE_QT": "ON",
         "CPP_STARTER_USE_QUICK": "ON",
         "CPP_STARTER_USE_WIKI_EXAMPLE": "ON",
-        "CPP_STARTER_USE_NAVALFATE": "ON"
+        "CPP_STARTER_USE_NAVALFATE": "ON",
+        "CPP_STARTER_USE_MV_EXAMPLE": "ON"
       }
     },
     {

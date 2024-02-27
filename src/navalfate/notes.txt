@@ -10,15 +10,3 @@ menu with changing options on right side of screen
 - Top menu that lets you switch between submenus
 	- grey out the one you're currently on
 
-
-F--------------------------------7
-L--------------------------------+
-|                      |__ l__l__|
-|					   | bla     |
-|					   | bla     |
-|					   | bla     |
-|  					   |         |
-|					   |         |
-|                      |         |
-+--------------------------------+
-L--------------------------------J

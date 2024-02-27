@@ -49,7 +49,8 @@
     "streetsidesoftware.code-spell-checker",
     "Gruntfuggly.todo-tree",
     "bbenoist.QML",
-    "Delgan.qml-format"
+    "Delgan.qml-format",
+    "felgo.felgo"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
