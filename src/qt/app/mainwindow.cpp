@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(
-      QAbstractItemView::NoEditTriggers);// TODO star in table
+      QAbstractItemView::NoEditTriggers);
     ui->tableView->setColumnHidden(model->fieldIndex("id"), true);
 
     connect(ui->pushButton, SIGNAL(released()), this, SLOT(slotAddTodo()));
@@ -70,7 +70,7 @@ void MainWindow::slotAddTodo()
         int count = model->rowCount();
         model->insertRows(count, 1);
         // QModelIndex index = model->index(count, 1);//
-        // model->setData(index, createEntry(addedStr));// TODO rethink createEntry
+        // model->setData(index, createEntry(addedStr))
         QSqlRecord record = model->record(count);
         record.setValue(TABLE_TASK_NAME, addedStr);
         model->setRecord(count, record);

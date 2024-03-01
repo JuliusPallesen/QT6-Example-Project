@@ -14,9 +14,6 @@
 #include <QSqlQuery>
 #include <expected>
 
-// TODO adhere to QSqlError usage and not exception throwing
-
-
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);

@@ -9,7 +9,6 @@ ApplicationWindow {
     visible: true
 
     Universal.theme: Universal.Dark
-    Universal.foreground: Universal.Steel
 
     menuBar: MenuBar {
         id: headermenu
@@ -52,9 +51,6 @@ ApplicationWindow {
                 color: "SlateGrey"
             }
         }
-        Component.onCompleted: {
-            console.log(g_gridsize);
-        }
     }
 
     Item {
@@ -85,7 +81,7 @@ ApplicationWindow {
                             var v1 = Math.floor(index / g_gridsize) % 2 === 0 ? 0 : 1;
                             return (index + v1) % 2 === 0 ? "black" : "white";
                         }
-                        
+
                         width: battlefield.width / g_gridsize
                         height: battlefield.height / g_gridsize
                         color: determineColor(index, g_gridsize)
@@ -135,29 +131,37 @@ ApplicationWindow {
                 }
                 currentIndex: tabs.currentIndex
 
-                Item {
-                    id: shipMenuBody
+                Rectangle {
                     anchors.fill: parent
-                    Rectangle {
-                        anchors.fill: parent
-                        color: "red"
+                    color: "gray"
+                    Column {
+                        id: shipMenu
+                        Repeater {
+                            model: 5
+                            delegate: Row {
+                                Label {
+                                    text: "abc" + index
+                                    height: implicitHeight
+                                    width: implicitWidth
+                                }
+
+                                TextField {
+                                    height: implicitHeight
+                                    width: implicitWidth
+                                }
+                            }
+                        }
                     }
                 }
-                Item {
-                    id: minesMenuBody
+
+                Rectangle {
                     anchors.fill: parent
-                    Rectangle {
-                        anchors.fill: parent
-                        color: "blue"
-                    }
+                    color: "black"
                 }
-                Item {
-                    id: highscoreMenuBody
+
+                Rectangle {
                     anchors.fill: parent
-                    Rectangle {
-                        anchors.fill: parent
-                        color: "green"
-                    }
+                    color: "gray"
                 }
             }
         }

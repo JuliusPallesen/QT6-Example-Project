@@ -69,7 +69,8 @@ template<uint32_t N> template<class T, class... Args>
     requires DerivedFromEntity<T>
 std::shared_ptr<T> Battlefield<N>::emplace(Args &&...args)
 {
-    const auto ptr = std::make_shared<T>(std::forward<Args>(args)...);
+    const auto ptr = std::make_shared<T>(
+      std::forward<Args>(args)...); // T of Args may be &Type, so we may forward it
     const auto p = ptr->getPosition();
     m_field[p.second][p.first] = ptr;
     m_ids[ptr->getID()] = ptr;
