@@ -9,7 +9,7 @@ class AlarmsListModel : public QAbstractListModel
 {
     Q_OBJECT
   public:
-    enum Roles { NameRole = Qt::UserRole, HoursRole, MinutesRole, OnRole, RepeatingRole };
+    enum Roles { NameRole = Qt::UserRole, HoursRole, MinutesRole, OnRole, RepeatingRole, ObjectRole };
 
     AlarmsListModel(QObject *parent = nullptr, bool fillWithDummyData = true)
       : QAbstractListModel(parent)
@@ -43,6 +43,8 @@ class AlarmsListModel : public QAbstractListModel
             return alarm->on();
         case RepeatingRole:
             return alarm->repeating();
+        case ObjectRole:
+            return QVariant::fromValue(alarm);
         default:
             return {};
         }
@@ -54,7 +56,8 @@ class AlarmsListModel : public QAbstractListModel
             { HoursRole, "hours" },
             { MinutesRole, "minutes" },
             { OnRole, "on" },
-            { RepeatingRole, "repeating" } };
+            { RepeatingRole, "repeating" } ,
+            { ObjectRole, "object"}};
         return roles;
     }
 
@@ -82,6 +85,8 @@ class AlarmsListModel : public QAbstractListModel
         case RepeatingRole:
             alarm->setRepeating(value.toBool());
             break;
+        case ObjectRole:
+            alarm = value.value<Alarm*>();
         default:
             return false;
         }

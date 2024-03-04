@@ -9,6 +9,10 @@ ApplicationWindow {
     title: "My Alarm App"
     visible: true
 
+    EditAlarm {
+        id: editPopup
+    }
+
     Rectangle {
         color: "grey"
         anchors {
@@ -26,10 +30,10 @@ ApplicationWindow {
             }
 
             delegate: AlarmListView {
-            }
-
-            onCurrentIndexChanged: {
-                console.log(currentIndex);
+                onAlarmEdit: {
+                    editPopup.alarm = model;
+                    editPopup.open();
+                }
             }
         }
 

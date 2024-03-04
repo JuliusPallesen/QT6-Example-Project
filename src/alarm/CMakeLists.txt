@@ -15,6 +15,10 @@ qt_add_qml_module(
     QML_FILES
         alarm.qml
         AlarmListView.qml
+        EditAlarm.qml
+    RESOURCES
+        not_repeating.jpg
+        repeating.jpg
 )
 
 target_link_libraries(alarm
