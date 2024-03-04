@@ -19,10 +19,17 @@ ApplicationWindow {
         ListView {
             id: alarmsList
             anchors.fill: parent
+            clip: true
+
             model: AlarmsModel {
+                id: alarmModel
             }
 
             delegate: AlarmListView {
+            }
+
+            onCurrentIndexChanged: {
+                console.log(currentIndex);
             }
         }
 
@@ -34,7 +41,7 @@ ApplicationWindow {
                 horizontalCenter: parent.horizontalCenter
             }
             onClicked: {
-                console.log("Adding new Alarm?");
+                alarmModel.insertRows(alarmModel.rowCount(), 1);
             }
         }
     }

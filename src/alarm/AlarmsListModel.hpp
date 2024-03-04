@@ -2,6 +2,7 @@
 
 #include "alarm.hpp"
 #include <QAbstractListModel>
+#include <QDebug>
 #include <QObject>
 
 class AlarmsListModel : public QAbstractListModel
@@ -86,6 +87,30 @@ class AlarmsListModel : public QAbstractListModel
         }
 
         emit dataChanged(index, index, { role });
+        return true;
+    }
+
+    bool insertRows(int row,
+      int count = 1,
+      const QModelIndex &parent = QModelIndex()) override
+    {
+        if (row < 0 || row > rowCount() || count < 0) { return false; }
+        beginInsertRows(parent, row, row + count - 1);
+        std::generate_n(std::back_inserter(m_alarms), count, [this]() {
+            return new Alarm("added", 9, 0, this);
+        });
+        endInsertRows();
+        return true;
+    }
+
+    bool removeRows(int row,
+      int count = 1,
+      const QModelIndex &parent = QModelIndex()) override
+    {
+        if (row >= rowCount() || row < 0 || count < 0) { return false; }
+        beginRemoveRows(parent, row, row + count - 1);
+        m_alarms.remove(row, count);
+        endRemoveRows();
         return true;
     }
 

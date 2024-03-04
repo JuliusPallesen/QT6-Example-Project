@@ -5,11 +5,11 @@
 class Alarm : public QObject
 {
     Q_OBJECT
-    /*Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged);
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged);
     Q_PROPERTY(int hours READ hours WRITE setHours NOTIFY hoursChanged);
     Q_PROPERTY(int minutes READ minutes WRITE setMinutes NOTIFY minutesChanged);
     Q_PROPERTY(bool repeating READ repeating WRITE setRepeating NOTIFY repeatingChanged);
-    Q_PROPERTY(bool on READ on WRITE setOn NOTIFY onChanged);*/
+    Q_PROPERTY(bool on READ on WRITE setOn NOTIFY onChanged);
 
   public:
     Alarm(QString name = "",
