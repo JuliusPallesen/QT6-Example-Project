@@ -7,10 +7,10 @@ Popup {
     id: popup
     visible: false
     property var alarm
-    readonly property var a_name: alarm.name
-    readonly property int a_hours: alarm.hours
-    readonly property int a_minutes: alarm.minutes
-    readonly property bool a_repeating: alarm.repeating
+    readonly property var a_name: alarm ? alarm.name : ""
+    readonly property int a_hours: alarm ? alarm.hours : 0
+    readonly property int a_minutes: alarm ? alarm.minutes : 0
+    readonly property bool a_repeating: alarm ? alarm.repeating : false
 
     width: parent.width
     height: parent.height
@@ -20,7 +20,6 @@ Popup {
 
         Label {
             text: modelData
-            font: Tumbler.tumbler.font
             opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -39,46 +38,47 @@ Popup {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.margins: 100
+
                 TextInput {
+                    id: nameText
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     width: implicitWidth
-                    text: {
-                        return popup.a_name;
-                    }
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    text: popup.a_name
+                    font.pixelSize: 13
                     onTextChanged: popup.alarm.name = text
-                }
-                Item {
-                }
-                RowLayout {
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    Label {
-                        text: "hours"
-                    }
-                    Label {
-                        text: "minutes"
-                    }
-                }
-                Item {
                 }
                 RowLayout {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     Tumbler {
                         id: hoursTumbler
                         model: 24
-                        delegate: delegateComponent
+                        delegate: Label {
+                            text: modelData
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
                         currentIndex: {
                             return popup.a_hours;
                         }
-                        onCurrentIndexChanged: popup.alarm.hours = currentIndex
+                        onCurrentIndexChanged: popup.alarm ? popup.alarm.hours = currentIndex : 0
+                    }
+                    Label {
+                        text: ":"
                     }
                     Tumbler {
                         id: minutesTumbler
                         model: 60
-                        delegate: delegateComponent
+                        delegate: Label {
+                            text: String(modelData).padStart(2, '0')
+                            opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
                         currentIndex: {
                             return popup.a_minutes;
                         }
-                        onCurrentIndexChanged: popup.alarm.minutes = currentIndex
+                        onCurrentIndexChanged: popup.alarm ? popup.alarm.minutes = currentIndex : 0
                     }
                 }
                 RowLayout {
@@ -94,13 +94,11 @@ Popup {
                         onClicked: popup.alarm.repeating = checked
                     }
                 }
-                RowLayout {
-                    Button {
-                        text: "Save"
-                        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                        onClicked: {
-                            popup.close();
-                        }
+                Button {
+                    text: "Save"
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    onClicked: {
+                        popup.close();
                     }
                 }
             }

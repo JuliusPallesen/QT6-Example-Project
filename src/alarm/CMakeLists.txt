@@ -6,6 +6,7 @@ qt_add_executable(alarm
     main.cpp
     alarm.hpp
     AlarmsListModel.hpp
+    TimerBackend.hpp
 )
 
 qt_add_qml_module(

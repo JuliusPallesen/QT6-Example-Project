@@ -118,6 +118,16 @@ class AlarmsListModel : public QAbstractListModel
         endRemoveRows();
         return true;
     }
+    
+    public slots:
+    void updateAlarms(int dayminutes) {
+        for(auto & alarm : m_alarms) {
+            if(alarm->hours() * 60 + alarm->minutes() == dayminutes) {
+                alarm->setTriggered(true);
+                if(!alarm->repeating()) alarm->setOn(false);
+            }
+        }
+    }
 
   private:
     QList<Alarm *> m_alarms;

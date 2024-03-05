@@ -6,18 +6,24 @@ import Alarm
 ItemDelegate {
     id: root
     signal alarmEdit
+    signal triggeredChanged
     readonly property ListView __lv: ListView.view
     width: parent.width
 
     Rectangle {
         color: "transparent"
+        anchors.fill: parent
         border.color: __lv.currentIndex == index ? "grey" : "transparent"
         border.width: 2
-        anchors.fill: parent
         radius: 10
-
+        z: 99
         MouseArea {
-            anchors.fill: parent
+
+            anchors {
+                fill: parent
+                rightMargin: parent.width * .25
+            }
+            preventStealing: false
             onClicked: {
                 __lv.currentIndex = index;
             }
@@ -29,9 +35,16 @@ ItemDelegate {
             }
         }
     }
-
     contentItem: RowLayout {
         id: alarmRow
+
+        Connections {
+            target: model
+            onTriggeredChanged: {
+                root.triggeredChanged();
+            }   
+        }
+
         ColumnLayout {
             Label {
                 text: model.name
@@ -43,28 +56,30 @@ ItemDelegate {
             }
         }
         Item {
-            id: placeholder
             Layout.fillWidth: true
         }
         Item {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    model.repeating = !model.repeating;
-                }
-            }
+            id: repeatingIcon
+            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+            Layout.rightMargin: 30
             Image {
                 height: onOffSwitch.height
                 fillMode: Image.PreserveAspectFit
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
                 source: model.repeating ? "repeating.jpg" : "not_repeating.jpg"
+                MouseArea {
+                    propagateComposedEvents: true
+                    z: 100
+                    anchors.fill: parent
+                    preventStealing: true
+                    onClicked: {
+                        model.repeating = !model.repeating;
+                    }
+                }
             }
         }
-
         Switch {
             id: onOffSwitch
+            z: 100
             checked: model.on
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             onClicked: model.on = checked

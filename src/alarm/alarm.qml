@@ -25,14 +25,20 @@ ApplicationWindow {
             anchors.fill: parent
             clip: true
 
-            model: AlarmsModel {
-                id: alarmModel
+            header: Label {
+                x : parent.width / 2 - width / 2
+                text: timer.currentTime
             }
 
+            model: alarmModel
+            
             delegate: AlarmListView {
                 onAlarmEdit: {
                     editPopup.alarm = model;
                     editPopup.open();
+                }
+                onTriggeredChanged: {
+                    console.log(model.name + "triggered")
                 }
             }
         }

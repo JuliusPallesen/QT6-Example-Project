@@ -10,6 +10,7 @@ class Alarm : public QObject
     Q_PROPERTY(int minutes READ minutes WRITE setMinutes NOTIFY minutesChanged);
     Q_PROPERTY(bool repeating READ repeating WRITE setRepeating NOTIFY repeatingChanged);
     Q_PROPERTY(bool on READ on WRITE setOn NOTIFY onChanged);
+    Q_PROPERTY(bool triggered READ triggered WRITE setTriggered NOTIFY triggeredChanged);
 
   public:
     Alarm(QString name = "",
@@ -25,7 +26,9 @@ class Alarm : public QObject
     int minutes() const { return m_minutes; }
     bool on() const { return m_on; }
     bool repeating() const { return m_repeating; }
+    bool triggered() const { return m_triggered; }
 
+public slots:
     void setName(QString name)
     {
         if (name == m_name) { return; }
@@ -57,17 +60,26 @@ class Alarm : public QObject
         emit repeatingChanged();
     }
 
-  private:
-    uint8_t m_hours;
-    uint8_t m_minutes;
-    bool m_repeating;
-    bool m_on;
-    QString m_name;
-
+    void setTriggered(bool triggered)
+    {
+        if (triggered == m_triggered) { return; }
+        m_triggered = triggered;
+        emit triggeredChanged();
+    }
+    
   signals:
     void nameChanged();
     void hoursChanged();
     void minutesChanged();
     void repeatingChanged();
     void onChanged();
+    void triggeredChanged();
+
+  private:
+    uint8_t m_hours;
+    uint8_t m_minutes;
+    bool m_repeating;
+    bool m_on;
+    bool m_triggered;
+    QString m_name;
 };
