@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Alarm
 
 ApplicationWindow {
     width: 480
@@ -20,25 +19,33 @@ ApplicationWindow {
             margins: 50
         }
 
+        Connections {
+            target: alarmModel
+            function onTriggeredAlarm(i) {
+                console.log(i);
+            //helloworld
+            }
+        }
+
         ListView {
             id: alarmsList
             anchors.fill: parent
             clip: true
 
             header: Label {
-                x : parent.width / 2 - width / 2
-                text: timer.currentTime
+                x: parent.width / 2 - width / 2
+                text: timerbackend.currentTime
             }
 
             model: alarmModel
-            
+
             delegate: AlarmListView {
                 onAlarmEdit: {
                     editPopup.alarm = model;
                     editPopup.open();
                 }
                 onTriggeredChanged: {
-                    console.log(model.name + "triggered")
+                    console.log(model.name);
                 }
             }
         }

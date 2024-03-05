@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Alarm
 
 ItemDelegate {
     id: root
@@ -37,13 +36,6 @@ ItemDelegate {
     }
     contentItem: RowLayout {
         id: alarmRow
-
-        Connections {
-            target: model
-            onTriggeredChanged: {
-                root.triggeredChanged();
-            }   
-        }
 
         ColumnLayout {
             Label {

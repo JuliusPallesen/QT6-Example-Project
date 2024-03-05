@@ -8,8 +8,31 @@
 class AlarmsListModel : public QAbstractListModel
 {
     Q_OBJECT
+  public slots:
+    void updateAlarms(int dayminutes)
+    {
+        for (size_t i = 0; i < m_alarms.size(); ++i) {
+            const auto alarm = m_alarms[i];
+            if (alarm->on() && alarm->minutes() + 60 * alarm->hours() == dayminutes) {
+                const auto index = createIndex(i, 0);
+                setData(index, true, TriggeredRole);
+                emit triggeredAlarm(i);
+                if (!alarm->repeating()) { setData(index, false, OnRole); }
+            }
+        }
+    }
+signals:
+    void triggeredAlarm(int);
+
   public:
-    enum Roles { NameRole = Qt::UserRole, HoursRole, MinutesRole, OnRole, RepeatingRole, ObjectRole };
+    enum Roles {
+        NameRole = Qt::UserRole,
+        HoursRole,
+        MinutesRole,
+        OnRole,
+        RepeatingRole,
+        TriggeredRole
+    };
 
     AlarmsListModel(QObject *parent = nullptr, bool fillWithDummyData = true)
       : QAbstractListModel(parent)
@@ -43,8 +66,8 @@ class AlarmsListModel : public QAbstractListModel
             return alarm->on();
         case RepeatingRole:
             return alarm->repeating();
-        case ObjectRole:
-            return QVariant::fromValue(alarm);
+        case TriggeredRole:
+            return alarm->triggered();
         default:
             return {};
         }
@@ -56,8 +79,8 @@ class AlarmsListModel : public QAbstractListModel
             { HoursRole, "hours" },
             { MinutesRole, "minutes" },
             { OnRole, "on" },
-            { RepeatingRole, "repeating" } ,
-            { ObjectRole, "object"}};
+            { RepeatingRole, "repeating" },
+            { TriggeredRole, "triggered" } };
         return roles;
     }
 
@@ -85,8 +108,9 @@ class AlarmsListModel : public QAbstractListModel
         case RepeatingRole:
             alarm->setRepeating(value.toBool());
             break;
-        case ObjectRole:
-            alarm = value.value<Alarm*>();
+        case TriggeredRole:
+            alarm->setTriggered(value.toBool());
+            break;
         default:
             return false;
         }
@@ -117,16 +141,6 @@ class AlarmsListModel : public QAbstractListModel
         m_alarms.remove(row, count);
         endRemoveRows();
         return true;
-    }
-    
-    public slots:
-    void updateAlarms(int dayminutes) {
-        for(auto & alarm : m_alarms) {
-            if(alarm->hours() * 60 + alarm->minutes() == dayminutes) {
-                alarm->setTriggered(true);
-                if(!alarm->repeating()) alarm->setOn(false);
-            }
-        }
     }
 
   private:

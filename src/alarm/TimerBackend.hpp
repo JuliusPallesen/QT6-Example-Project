@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QDateTime>
+#include <QDebug>
 #include <QObject>
 #include <QTimer>
 
@@ -15,10 +16,11 @@ class TimerBackend : public QObject
     TimerBackend(QObject *parent = nullptr) : QObject(parent)
     {
         m_qtimer = new QTimer(this);
-        m_qtimer->setInterval(60000);
-        m_qtimer->setSingleShot(true);
+        m_qtimer->setInterval(1000);
+        m_qtimer->setSingleShot(false);
 
-        QObject::connect(m_qtimer, &QTimer::timeout, this, &TimerBackend::timerTimeout);
+        connect(m_qtimer, SIGNAL(timeout()), this, SLOT(timerTimeout()));
+        m_qtimer->start();
 
         timerTimeout();
     }
@@ -43,8 +45,13 @@ class TimerBackend : public QObject
     void timerTimeout()
     {
         QDateTime currentTime = QDateTime::currentDateTime().toLocalTime();
-        setCurrentTime(currentTime.toString("h:m"));
+        setCurrentTime(currentTime.toString("h:mm"));
+        // only trigger minute update once every minute
+        // if (currentTime.time().minute() != __last_minute) {
         setDayMinutes(currentTime.time().minute() + 60 * currentTime.time().hour());
+        __last_minute = currentTime.time().minute();
+        emit dayMinutesChanged(m_dayminutes);
+        //}
     }
 
   signals:
@@ -52,7 +59,8 @@ class TimerBackend : public QObject
     void dayMinutesChanged(int);
 
   private:
-    QTimer *m_qtimer;
     int m_dayminutes;
+    int __last_minute;
+    QTimer *m_qtimer;
     QString m_currenttime;
 };
