@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 Popup {
-    id: alarmRing
+    id: alarmRinging
     property var name: ""
     visible: false
 
@@ -62,6 +62,24 @@ Popup {
                 Component.onCompleted: {
                     shakeAnimation.start();
                 }
+            }
+        }
+        Slider {
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                margins: parent.width * .05
+                top: clockItem.bottom
+            }
+            id: unlockSlider
+            from: 0
+            to: 100
+            value: 0
+
+            onValueChanged: {
+                if (value === to) {
+                    alarmRinging.close();
+                }
+                value = from;
             }
         }
     }

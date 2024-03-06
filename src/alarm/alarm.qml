@@ -51,6 +51,10 @@ ApplicationWindow {
                 onTriggeredChanged: {
                     console.log(model.name);
                 }
+                onAlarmDeleted: {
+                    console.log(index);
+                    alarmModel.removeRows(index, 1, alarmModel.index(index, 0));
+                }
             }
         }
 

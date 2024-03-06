@@ -2,6 +2,7 @@
 
 #include "alarm.hpp"
 #include <QAbstractListModel>
+#include <QCoreApplication>
 #include <QDebug>
 #include <QObject>
 
@@ -136,9 +137,10 @@ class AlarmsListModel : public QAbstractListModel
       int count = 1,
       const QModelIndex &parent = QModelIndex()) override
     {
-        if (row >= rowCount() || row < 0 || count < 0) { return false; }
-        beginRemoveRows(parent, row, row + count - 1);
-        m_alarms.remove(row, count);
+        Q_UNUSED(parent);
+        if (row < 0 || (row + count) >= m_alarms.size()) return false;
+        beginRemoveRows(QModelIndex(), row, row + count - 1);
+        for (int i = 0; i < count; ++i) { delete m_alarms.takeAt(row); }
         endRemoveRows();
         return true;
     }

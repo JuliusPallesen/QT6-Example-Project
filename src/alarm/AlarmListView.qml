@@ -4,8 +4,10 @@ import QtQuick.Layouts
 
 ItemDelegate {
     id: root
+    clip: true
     signal alarmEdit
     signal triggeredChanged
+    signal alarmDeleted
     readonly property ListView __lv: ListView.view
     width: parent.width
 
@@ -17,20 +19,31 @@ ItemDelegate {
         radius: 10
         z: 99
         MouseArea {
-
+            id: rowArea
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
             anchors {
                 fill: parent
                 rightMargin: parent.width * .25
             }
             preventStealing: false
             onClicked: {
-                __lv.currentIndex = index;
+                if (mouse.button == Qt.LeftButton) {
+                    //TODO: Update to non-deprecated
+                    __lv.currentIndex = index;
+                } else {
+                    contextMenu.open();
+                }
             }
-            onDoubleClicked: {
-                root.alarmEdit();
-            }
-            onPressAndHold: {
-                root.alarmEdit();
+            Menu {
+                id: contextMenu
+                MenuItem {
+                    text: "Edit"
+                    onTriggered: root.alarmEdit()
+                }
+                MenuItem {
+                    text: "Remove"
+                    onTriggered: root.alarmDeleted()
+                }
             }
         }
     }

@@ -47,11 +47,11 @@ class TimerBackend : public QObject
         QDateTime currentTime = QDateTime::currentDateTime().toLocalTime();
         setCurrentTime(currentTime.toString("h:mm"));
         // only trigger minute update once every minute
-        // if (currentTime.time().minute() != __last_minute) {
-        setDayMinutes(currentTime.time().minute() + 60 * currentTime.time().hour());
-        __last_minute = currentTime.time().minute();
-        emit dayMinutesChanged(m_dayminutes);
-        //}
+        if (currentTime.time().minute() != __last_minute) {
+            setDayMinutes(currentTime.time().minute() + 60 * currentTime.time().hour());
+            __last_minute = currentTime.time().minute();
+            emit dayMinutesChanged(m_dayminutes);
+        }
     }
 
   signals:
