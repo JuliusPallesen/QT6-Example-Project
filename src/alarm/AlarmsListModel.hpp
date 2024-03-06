@@ -21,7 +21,7 @@ class AlarmsListModel : public QAbstractListModel
             }
         }
     }
-signals:
+  signals:
     void triggeredAlarm(int);
 
   public:
@@ -141,6 +141,19 @@ signals:
         m_alarms.remove(row, count);
         endRemoveRows();
         return true;
+    }
+
+    Q_INVOKABLE QVariantMap get(int row)
+    {
+        const QHash<int, QByteArray> roleNames = this->roleNames();
+        const QModelIndex index = this->index(row, 0);
+        QVariantMap result;
+
+        for (const int roleId : roleNames.keys()) {
+            result[roleNames[roleId]] = index.data(roleId);
+        }
+
+        return result;
     }
 
   private:

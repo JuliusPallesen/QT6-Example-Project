@@ -12,6 +12,10 @@ ApplicationWindow {
         id: editPopup
     }
 
+    AlarmRinging {
+        id: alarmRinging
+    }
+
     Rectangle {
         color: "grey"
         anchors {
@@ -22,8 +26,8 @@ ApplicationWindow {
         Connections {
             target: alarmModel
             function onTriggeredAlarm(i) {
-                console.log(i);
-            //helloworld
+                alarmRinging.name = alarmModel.get(i).name;
+                alarmRinging.open();
             }
         }
 
