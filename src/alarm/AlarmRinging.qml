@@ -25,22 +25,44 @@ Popup {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 margins: parent.width * .05
-                bottom: clockIcon.top
+                bottom: clockItem.top
             }
             text: name
             font.pixelSize: 16
             font.bold: true
         }
+        Item {
+            id: clockItem
+            width: parent.width / 2
+            height: parent.width / 2
+            anchors.centerIn: parent
+            Image {
+                id: clockIcon
+                source: "clock.jpg"
 
-        Image {
-            id: clockIcon
-            anchors {
-                centerIn: parent
-                left: parent.left
-                right: parent.right
-                margins: parent.width * .25
+                SequentialAnimation {
+                    id: shakeAnimation
+                    loops: Animation.Infinite
+                    PropertyAnimation {
+                        target: clockIcon
+                        property: "x"
+                        from: -2
+                        to: 2
+                        duration: 100
+                    }
+                    PropertyAnimation {
+                        target: clockIcon
+                        property: "y"
+                        from: -2
+                        to: 2
+                        duration: 100
+                    }
+                }
+
+                Component.onCompleted: {
+                    shakeAnimation.start();
+                }
             }
-            source: "clock.jpg"
         }
     }
 }
