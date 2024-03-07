@@ -39,8 +39,9 @@ Popup {
             anchors.centerIn: parent
             Image {
                 id: clockIcon
-                source: ":/qrc/resource/clock_black.png"
-
+                source: "qrc:/QtExampleProject/resource/clock_black.png"
+                height: parent.height
+                fillMode: Image.PreserveAspectFit
                 SequentialAnimation {
                     id: shakeAnimation
                     loops: Animation.Infinite
@@ -66,12 +67,12 @@ Popup {
             }
         }
         Slider {
+            id: unlockSlider
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 margins: parent.width * .05
                 top: clockItem.bottom
             }
-            id: unlockSlider
             from: 0
             to: 100
             value: 0

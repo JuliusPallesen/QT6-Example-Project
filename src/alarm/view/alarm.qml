@@ -9,6 +9,8 @@ ApplicationWindow {
     title: "My Alarm App"
     visible: true
 
+    Universal.theme: Universal.Light
+    Universal.accent: Universal.Cobalt
 
     EditAlarm {
         id: editPopup

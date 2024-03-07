@@ -39,7 +39,6 @@ Popup {
         anchors.margins: 50
         Rectangle {
             visible: true
-            color: "white"
             anchors.fill: parent
 
             ColumnLayout {
@@ -106,14 +105,12 @@ Popup {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                     Button {
                         text: "Save"
-                        //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                         onClicked: {
                             popup.close();
                         }
                     }
                     Button {
                         text: "Cancel"
-                        //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                         onClicked: {
                             popup.alarm.name = a_name;
                             popup.alarm.hours = a_hours;
@@ -123,7 +120,6 @@ Popup {
                         }
                     }
                 }
-                //TODO: Add cancel button if possible
             }
         }
     }

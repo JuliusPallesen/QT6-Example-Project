@@ -19,11 +19,11 @@ qt_add_qml_module(
         view/AlarmRinging.qml
         view/EditAlarm.qml
     RESOURCES
-	resource/clock_black.png
-	resource/clock_white.png
-	resource/repeating_black.png
-	resource/repeating_grey.png
-	resource/repeating_white.png
+        resource/clock_black.png
+        resource/clock_white.png
+        resource/repeating_black.png
+        resource/repeating_grey.png
+        resource/repeating_white.png
 )
 
 target_link_libraries(alarm

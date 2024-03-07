@@ -15,7 +15,7 @@ ItemDelegate {
     Rectangle {
         color: "transparent"
         anchors.fill: parent
-        border.color: __lv.currentIndex == index ? Universal.color(Universal.Blue) : "transparent"
+        border.color: __lv.currentIndex == index ? Universal.color(Universal.Cobalt) : "transparent"
         border.width: 2
         radius: 10
         z: 99
@@ -29,7 +29,6 @@ ItemDelegate {
             preventStealing: false
             onClicked: mouse => {
                 if (mouse.button == Qt.LeftButton) {
-                    //TODO: Update to non-deprecated
                     __lv.currentIndex = index;
                 } else {
                     contextMenu.open();
@@ -71,7 +70,7 @@ ItemDelegate {
             Image {
                 height: onOffSwitch.height
                 fillMode: Image.PreserveAspectFit
-                source: model.repeating ? ":/qrc/resource/repeating_black.png" : ":/qrc/resource/repeating_grey.png" 
+                source: model.repeating ? "qrc:/QtExampleProject/resource/repeating_black.png" : "qrc:/QtExampleProject/resource/repeating_grey.png"
                 MouseArea {
                     propagateComposedEvents: true
                     z: 100
