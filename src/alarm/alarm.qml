@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 ApplicationWindow {
+    //TODO: Use styles
     width: 480
     height: 720
     title: "My Alarm App"
@@ -48,12 +49,8 @@ ApplicationWindow {
                     editPopup.alarm = model;
                     editPopup.open();
                 }
-                onTriggeredChanged: {
-                    console.log(model.name);
-                }
                 onAlarmDeleted: {
-                    console.log(index);
-                    alarmModel.removeRows(index, 1, alarmModel.index(index, 0));
+                    alarmModel.removeRows(index, 1);
                 }
             }
         }
@@ -67,6 +64,7 @@ ApplicationWindow {
             }
             onClicked: {
                 alarmModel.insertRows(alarmModel.rowCount(), 1);
+                //TODO: open edit alarm with newly added Alarm if possible
             }
         }
     }

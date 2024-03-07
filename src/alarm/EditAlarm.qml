@@ -5,7 +5,7 @@ import QtQuick.Layouts
 Popup {
     id: popup
     visible: false
-    property var alarm
+    property var alarm //TODO: Fix binding loop somehow if possible
     readonly property var a_name: alarm ? alarm.name : ""
     readonly property int a_hours: alarm ? alarm.hours : 0
     readonly property int a_minutes: alarm ? alarm.minutes : 0
@@ -100,6 +100,7 @@ Popup {
                         popup.close();
                     }
                 }
+                //TODO: Add cancel button if possible
             }
         }
     }
