@@ -39,9 +39,10 @@ class AlarmsListModel : public QAbstractListModel
       : QAbstractListModel(parent)
     {
         if (fillWithDummyData) {
-            m_alarms.append(new Alarm("Morgenstund hat Gold im Mund", 6, 30, this));
-            m_alarms.append(new Alarm("Schlumm-Schlumm", 10, 45, this));
-            m_alarms.append(new Alarm("Wochenende", 9, 0, this));
+            m_alarms.append(
+              new Alarm("Morgenstund hat Gold im Mund", 6, 30, false, false, this));
+            m_alarms.append(new Alarm("Schlumm-Schlumm", 10, 45, false, false, this));
+            m_alarms.append(new Alarm("Wochenende", 9, 0, false, false, this));
         }
     }
 

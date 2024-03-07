@@ -1,15 +1,24 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.Universal
 
 Popup {
     id: popup
     visible: false
-    property var alarm //TODO: Fix binding loop somehow if possible
-    readonly property var a_name: alarm ? alarm.name : ""
-    readonly property int a_hours: alarm ? alarm.hours : 0
-    readonly property int a_minutes: alarm ? alarm.minutes : 0
-    readonly property bool a_repeating: alarm ? alarm.repeating : false
+    property var alarm
+    property string a_name
+    property int a_hours
+    property int a_minutes
+    property bool a_repeating
+
+    function init(a) {
+        alarm = a;
+        a_name = alarm.name;
+        a_hours = alarm.hours;
+        a_minutes = alarm.minutes;
+        a_repeating = alarm.repeating;
+    }
 
     width: parent.width
     height: parent.height
@@ -93,11 +102,25 @@ Popup {
                         onClicked: popup.alarm.repeating = checked
                     }
                 }
-                Button {
-                    text: "Save"
+                RowLayout {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                    onClicked: {
-                        popup.close();
+                    Button {
+                        text: "Save"
+                        //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                        onClicked: {
+                            popup.close();
+                        }
+                    }
+                    Button {
+                        text: "Cancel"
+                        //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                        onClicked: {
+                            popup.alarm.name = a_name;
+                            popup.alarm.hours = a_hours;
+                            popup.alarm.minutes = a_minutes;
+                            popup.alarm.repeating = a_repeating;
+                            popup.close();
+                        }
                     }
                 }
                 //TODO: Add cancel button if possible

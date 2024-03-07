@@ -4,9 +4,9 @@ qt_standard_project_setup()
 
 qt_add_executable(alarm
     main.cpp
-    alarm.hpp
-    AlarmsListModel.hpp
-    TimerBackend.hpp
+    backend/alarm.hpp
+    backend/AlarmsListModel.hpp
+    backend/TimerBackend.hpp
 )
 
 qt_add_qml_module(
@@ -14,14 +14,16 @@ qt_add_qml_module(
     URI
         QtExampleProject
     QML_FILES
-        alarm.qml
-        AlarmListView.qml
-        AlarmRinging.qml
-        EditAlarm.qml
+        view/alarm.qml
+        view/AlarmListView.qml
+        view/AlarmRinging.qml
+        view/EditAlarm.qml
     RESOURCES
-        not_repeating.jpg
-        repeating.jpg
-        clock.jpg
+	resource/clock_black.png
+	resource/clock_white.png
+	resource/repeating_black.png
+	resource/repeating_grey.png
+	resource/repeating_white.png
 )
 
 target_link_libraries(alarm

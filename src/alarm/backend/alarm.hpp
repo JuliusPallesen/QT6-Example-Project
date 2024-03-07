@@ -19,7 +19,8 @@ class Alarm : public QObject
       bool on = true,
       bool repeating = false,
       QObject *parent = nullptr)
-      : QObject(parent), m_name(name), m_hours(hours), m_minutes(minutes), m_on(on), m_repeating(repeating)
+      : QObject(parent), m_name(name), m_hours(hours), m_minutes(minutes), m_on(on),
+        m_repeating(repeating)
     {}
     QString name() const { return m_name; }
     int hours() const { return m_hours; }
@@ -28,7 +29,7 @@ class Alarm : public QObject
     bool repeating() const { return m_repeating; }
     bool triggered() const { return m_triggered; }
 
-public slots:
+  public slots:
     void setName(QString name)
     {
         if (name == m_name) { return; }
@@ -66,7 +67,7 @@ public slots:
         m_triggered = triggered;
         emit triggeredChanged();
     }
-    
+
   signals:
     void nameChanged();
     void hoursChanged();

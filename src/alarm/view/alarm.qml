@@ -1,13 +1,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls.Universal
 
 ApplicationWindow {
-    //TODO: Use styles
     width: 480
     height: 720
     title: "My Alarm App"
     visible: true
+
 
     EditAlarm {
         id: editPopup
@@ -18,7 +19,6 @@ ApplicationWindow {
     }
 
     Rectangle {
-        color: "grey"
         anchors {
             fill: parent
             margins: 50
@@ -46,7 +46,7 @@ ApplicationWindow {
 
             delegate: AlarmListView {
                 onAlarmEdit: {
-                    editPopup.alarm = model;
+                    editPopup.init(model);
                     editPopup.open();
                 }
                 onAlarmDeleted: {

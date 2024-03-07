@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Universal
 
 Popup {
     id: alarmRinging
@@ -38,7 +39,7 @@ Popup {
             anchors.centerIn: parent
             Image {
                 id: clockIcon
-                source: "clock.jpg"
+                source: ":/qrc/resource/clock_black.png"
 
                 SequentialAnimation {
                     id: shakeAnimation

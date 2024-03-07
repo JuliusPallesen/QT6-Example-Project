@@ -1,6 +1,6 @@
-#include "AlarmsListModel.hpp"
-#include "TimerBackend.hpp"
-#include "alarm.hpp"
+#include "backend/AlarmsListModel.hpp"
+#include "backend/TimerBackend.hpp"
+#include "backend/alarm.hpp"
 #include <QDateTime>
 #include <QQmlEngine>
 #include <QtQuick>
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     QObject::connect(
       timerbackend, SIGNAL(dayMinutesChanged(int)), alarmModel, SLOT(updateAlarms(int)));
 
-    const QUrl url(QStringLiteral("qrc:/QtExampleProject/alarm.qml"));
+    const QUrl url(QStringLiteral("qrc:/QtExampleProject/view/alarm.qml"));
     engine.load(url);
 
     return app.exec();
